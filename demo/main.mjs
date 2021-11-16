@@ -7,11 +7,9 @@ const ctx = document.querySelector('canvas').getContext('2d');
 ctx.canvas.height = ctx.canvas.clientHeight;
 ctx.canvas.width = ctx.canvas.clientWidth;
 
-const c1 = new Player({y: 200, x:400, r: 50, color: 'red'});
+const c1 = new Player({y: 200, x:200, r: 50, color: 'red'});
+
 const keyboard = new Keyboard();
-
-
-
 
 MainLoop.setUpdate(dt => {
   if (keyboard.isKeyDown('KeyA')) {

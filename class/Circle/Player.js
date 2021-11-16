@@ -12,9 +12,10 @@ export default class Player extends Circle {
     super.draw(ctx);
     ctx.beginPath();
     ctx.strokeStyle = this.color;
+    ctx.lineWidth = this.r / 5;
     ctx.moveTo(this.x, this.y);
-    const distX = 2*this.r * Math.cos(this.dir);
-    const distY = 2*this.r * Math.sin(this.dir);
+    const distX = 2 * this.r * Math.cos(this.dir);
+    const distY = 2 * this.r * Math.sin(this.dir);
     ctx.lineTo(this.x + distX, this.y + distY);
     ctx.closePath();
     ctx.stroke();
@@ -26,7 +27,6 @@ export default class Player extends Circle {
 
   thrust(dt, factor) {
     this.speed += dt * factor;
-    console.log(this.speed);
   }
 
   friction(dt, factor) {
@@ -37,7 +37,7 @@ export default class Player extends Circle {
     const distX = this.speed * dt * Math.cos(this.dir);
     const distY = this.speed * dt * Math.sin(this.dir);
     this.x += distX;
-    this.y +=distY;
+    this.y += distY;
   }
 
 }
