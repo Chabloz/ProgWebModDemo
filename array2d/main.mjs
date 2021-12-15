@@ -2,8 +2,16 @@ import Automaton from "../class/Automaton/Sand.js";
 import MainLoop from "../lib/mainloop.js";
 import Keyboard from "../class/Keyboard.js";
 
+
+
 const keyboard = new Keyboard();
-keyboard.onKeyDown('KeyP', () => console.log('p is pressed'));
+
+keyboard.onKeyDown('KeyS', () => {
+  console.log('save')
+});
+
+
+
 
 const automaton1 = new Automaton({rows: 50, tileSize: 6});
 automaton1.matrix[0][3] = 1;
@@ -56,4 +64,8 @@ MainLoop.start();
 //   }
 // }
 
+
+keyboard.onKeyDown('KeyS', () => {
+  console.log('coucou')
+});
 
