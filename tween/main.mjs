@@ -10,9 +10,6 @@ ctx.canvas.width = ctx.canvas.clientWidth;
 
 const c1 = new Circle({x: 100, y: 100, r: 100, color: 'red'});
 
-
-
-// tweens.create();
 const tween1 = tweens.create({from: 300, to: 100, duration: 1000, animate: progress => {
   c1.x = progress;
 }});
@@ -22,9 +19,8 @@ const tween2 = tweens.create({after: tween1, from: 100, to: 300, duration: 1000,
 
 
 const text ="Hello world ! lorem ipsum dolor sit ....."
-// tweens.create();
 tweens.create({from: 0, to: text.length-1, duration: 10000, animate: progress => {
-  // console.log(text.substring(0, Math.ceil(progress)));
+  console.log(text.substring(0, Math.ceil(progress)));
 }});
 
 
