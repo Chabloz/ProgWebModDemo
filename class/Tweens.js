@@ -55,6 +55,11 @@ export default class Tweens{
     this.tweens.delete(tween);
   }
 
+  deleteAll() {
+    this.tweens = new Set();
+    this.tweensAfter = new Map();
+  }
+
   create({
     duration = 1000,
     from = 0,
@@ -77,6 +82,8 @@ export default class Tweens{
   }
 
   update(dt) {
+    const newTweens = [];
+
     for (const tween of this.tweens) {
       tween.time += dt;
       let timeFraction = tween.time / tween.duration;
@@ -84,23 +91,25 @@ export default class Tweens{
 
       const progress = (tween.to - tween.from) * tween.ease(timeFraction) + tween.from;
       tween.animate(progress);
+      if (timeFraction != 1) continue;
 
-      if (timeFraction == 1) {
-        if (tween.loop || tween.yoyo) {
-          if (tween.yoyo) {
-            [tween.to, tween.from] = [tween.from, tween.to];
-            if (!tween.loop) tween.yoyo = false;
-          }
-          tween.time = 0;
-        } else {
-          if (this.tweensAfter.has(tween)){
-            const nextTween = this.tweensAfter.get(tween);
-            this.tweens.add(nextTween);
-          }
-          this.tweens.delete(tween);
+      // Manage the end of life of the tween
+      if (tween.loop || tween.yoyo) {
+        if (tween.yoyo) {
+          [tween.to, tween.from] = [tween.from, tween.to];
+          if (!tween.loop) tween.yoyo = false;
         }
+        tween.time = 0;
+      } else {
+        if (this.tweensAfter.has(tween)) {
+          newTweens.push(this.tweensAfter.get(tween));
+          this.tweensAfter.delete(tween);
+        }
+        this.tweens.delete(tween);
       }
     }
+
+    newTweens.forEach(tween => this.tweens.add(tween));
   }
 
 }
