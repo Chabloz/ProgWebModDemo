@@ -34,13 +34,9 @@ for (let i = 0; i<particules.length; i++) {
 });
 }
 
-
-
-
 // const tween2 = tweens.create({after: tween1, from: 100, to: 300, duration: 1000, animate: progress => {
 //   c1.y = progress;
 // }});
-
 
 const text ="Hello world ! lorem ipsum dolor sit ....."
 tweens.create({from: 0, to: text.length-1, duration: 10000, animate: progress => {

@@ -21,9 +21,9 @@ export default class Keyboard {
       actions = this.actionsOnKeyPressed.get(key)
     } else {
       actions = [];
+      this.actionsOnKeyPressed.set(key, actions);
     };
-    actions.push(callback)
-    this.actionsOnKeyPressed.set(key, actions)
+    actions.push(callback);
   }
 
   #onKeyUp(evt) {

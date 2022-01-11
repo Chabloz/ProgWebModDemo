@@ -2,15 +2,11 @@ import Automaton from "../class/Automaton/Sand.js";
 import MainLoop from "../lib/mainloop.js";
 import Keyboard from "../class/Keyboard.js";
 
-
-
 const keyboard = new Keyboard();
 
 keyboard.onKeyDown('KeyS', () => {
   console.log('save')
 });
-
-
 
 
 const automaton1 = new Automaton({rows: 50, tileSize: 6});
