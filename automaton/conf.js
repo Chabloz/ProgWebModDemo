@@ -1,8 +1,10 @@
 export default {
   automaton : {
-    tileSize: 10,
-    aliveColor: 'green',
+    tileSize: 30,
+    aliveColor: 'white',
     deadColor: 'black',
-    isAliveProb: 0.4
+    isAliveProb: 0.7,
+    birthRule: new Set([6, 7, 8]),
+    survivalRule: new Set([3, 4, 5, 6, 7, 8]),
   }
 };

@@ -6,18 +6,29 @@ export default class Automaton {
     rows = 10,
     cols = rows,
     tileSize = 20,
+    birthRule = new Set([3]),
+    survivalRule = new Set([2, 3]),
     aliveColor = 'red',
-    deadColor = 'blue',
+    deadColor = 'black',
     isAliveProb = 0.2,
   } = {}) {
     this.rows = rows;
     this.cols = cols;
     this.aliveColor = aliveColor;
     this.deadColor = deadColor;
+    this.survivalRule = survivalRule;
+    this.birthRule = birthRule;
     this.tileSize = tileSize;
     this.matrix = generateWithFn(this.rows, this.cols, () => {
       return Math.random() >= isAliveProb ? 0 : 1;
     });
+  }
+
+  convertRowColToCoord(row, col) {
+    return {
+      x: col * this.tileSize + this.tileSize/2,
+      y: row * this.tileSize + this.tileSize/2
+    }
   }
 
   update() {
@@ -26,9 +37,9 @@ export default class Automaton {
     for (let row = 0; row < this.rows; row++) {
       for (let col = 0; col < this.cols; col++) {
         const nbAliveNeighbors = this.countAliveNeighbors({row, col});
-        if (this.matrix[row][col] && !(nbAliveNeighbors - 1 == 2 || nbAliveNeighbors - 1 == 3)) {
+        if (this.matrix[row][col] && !(this.survivalRule.has(nbAliveNeighbors - 1))) {
           copy[row][col] = 0;
-        } else if (!this.matrix[row][col] && nbAliveNeighbors == 3) {
+        } else if (!this.matrix[row][col] && this.birthRule.has(nbAliveNeighbors)) {
           copy[row][col] = 1
         }
       }
