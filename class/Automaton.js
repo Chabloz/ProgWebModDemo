@@ -24,6 +24,11 @@ export default class Automaton {
     });
   }
 
+  isValidPos({row, col}) {
+    return row >= 0 && row < this.rows
+        && col >= 0 && col < this.cols;
+  }
+
   convertRowColToCoord(row, col) {
     return {
       x: col * this.tileSize + this.tileSize/2,

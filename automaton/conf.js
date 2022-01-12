@@ -1,6 +1,6 @@
 export default {
   automaton : {
-    tileSize: 30,
+    tileSize: 60,
     aliveColor: 'white',
     deadColor: 'black',
     isAliveProb: 0.7,

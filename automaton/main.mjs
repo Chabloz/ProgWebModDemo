@@ -25,6 +25,8 @@ automaton1.update();
 automaton1.update();
 automaton1.update();
 automaton1.update();
+automaton1.flowFieldTo(2 , 2);
+console.log(automaton1.flowMap);
 
 const coord = automaton1.convertRowColToCoord(2, 2);
 const mob =  new Circle({...coord, r: conf.automaton.tileSize / 2, color: 'red'});
